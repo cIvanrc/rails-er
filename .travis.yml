@@ -1,10 +1,16 @@
 language: ruby
 rvm:
   - 2.6.5
-before_install: gem install bundler
-deploy:
-  api_key: $RUBYGEMS_API_KEY
-  on:
-    branch: master
-  provider: rubygems
-script: gem build rails_er.gemspec
+
+script: echo "Running tests against $(ruby -v) ..."
+
+jobs:
+  include:
+    - stage: gem release
+      rvm: 2.2
+      script: echo "Deploying to rubygems.org ..."
+      deploy:
+        provider: rubygems
+        gem: rails_er
+        api_key: $RUBYGEMS_API_KEY
+        on: deploy-gem-release
