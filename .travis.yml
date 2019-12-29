@@ -13,4 +13,4 @@ jobs:
         provider: rubygems
         gem: rails_er
         api_key: $RUBYGEMS_API_KEY
-        on: deploy-gem-release
+        on: master
