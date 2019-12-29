@@ -1,4 +1,10 @@
----
 language: ruby
 rvm:
   - 2.6.5
+before_install: gem install bundler
+deploy:
+  api_key: "$API_KEY"
+  on:
+    branch: master
+  provider: rubygems
+script: gem build rails_er.gemspec
