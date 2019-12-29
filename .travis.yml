@@ -3,13 +3,10 @@ rvm:
   - 2.6.5
 
 before_install: gem install bundler
-script: echo "Running tests against $(ruby -v) ..."
 
-jobs:
-  include:
-    - stage: gem release -k -p
-      script: echo "Deploying to rubygems.org ..."
-      deploy:
-        provider: rubygems
-        gem: rails_er-0.1.0.gem
-        on: master
+deploy:
+  api_key: "$API_KEY"
+  on:
+    branch: master
+  provider: rubygems
+script: gem build rails_er.gemspec
